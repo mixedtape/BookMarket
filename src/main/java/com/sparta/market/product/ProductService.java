@@ -18,7 +18,7 @@ public class ProductService {
     @Transactional
     public Product getProductById(Long productId) {
         return productRepository.findById(productId)
-                .orElseThrow(() -> new EntityNotFoundException("몰루"));
+                .orElseThrow(() -> new EntityNotFoundException("해당 상품은 존재하지 않습니다!"));
     }
     @Transactional
     public Product addProduct(Product product) {
