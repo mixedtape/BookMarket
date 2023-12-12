@@ -27,12 +27,20 @@ public class ProductService {
     @Transactional
     public Product updateProduct(Long productId, Product product) {
         getProductById(productId);
-        product.setId(productId);
-        return productRepository.save(product);
+        if(product != null){
+            return productRepository.save(product);
+        } else{
+            throw new IllegalArgumentException("해당 상품은 존재하지 않습니다!");
+        }
     }
     @Transactional
     public void deleteProduct(Long productId) {
         getProductById(productId);
-        productRepository.deleteById(productId);
+        if(productId!=null)
+        {
+            productRepository.deleteById(productId);
+        } else {
+            throw new IllegalArgumentException("해당 상품은 없습니다!");
+        }
     }
 }
